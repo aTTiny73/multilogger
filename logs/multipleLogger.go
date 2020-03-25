@@ -1,4 +1,4 @@
-package multipleLogger
+package logs
 
 //NewCustomLogger makes a slice of loggers
 func NewCustomLogger(flag bool, logs ...LogFace) MultipleLog {

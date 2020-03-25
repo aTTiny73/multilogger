@@ -1,4 +1,4 @@
-package NewFileLogger
+package logs
 
 import (
 	"fmt"

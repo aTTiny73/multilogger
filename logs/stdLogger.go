@@ -1,4 +1,4 @@
-package stdLogger
+package logs
 
 import (
 	"log"

@@ -1,10 +1,11 @@
-package database
+package logs
 
 import (
 	"database/sql"
 	"fmt"
 	"log"
 	"time"
+	
 )
 
 //DatabaseConfiguration setting up database
