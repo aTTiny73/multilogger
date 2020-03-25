@@ -2,8 +2,8 @@ package main
 
 import (
 	"log/syslog"
-	"logs"
 
+	"github.com/aTTiny73/multilogger/logs"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/mkmueller/golog"
 )
