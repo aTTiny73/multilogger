@@ -12,23 +12,23 @@ func main() {
 
 	fileLog1 := logs.NewFileLogger("fileLog1") // /tmp/filelog1
 	defer fileLog1.Close()
-	fileLog1.SetPrefix("  Info")
-	fileLog1.Println("Test file log")
+	//fileLog1.SetPrefix("  Info")
+	//fileLog1.Println("Test file log")
 
 	fileLog2 := logs.NewFileLogger("fileLog2")
 	defer fileLog2.Close()
-	fileLog2.Println("Test filelog2")
+	//fileLog2.Println("Test filelog2")
 
 	syslog, _ := logs.NewSysLogger(syslog.LOG_NOTICE, golog.LstdFlags)
-	syslog.SetPrefix("SysLOG")
-	syslog.Println("sylog test")
+	//syslog.SetPrefix("SysLOG")
+	//syslog.Println("sylog test")
 
 	stdlog := logs.NewStdLogger()
-	stdlog.Println("StdLog Test")
+	//stdlog.Println("StdLog Test")
 
 	databaseLog := logs.NewDataBaseLog(logs.DatabaseConfiguration())
-	databaseLog.SetPrefix("INFO")
-	databaseLog.WriteToDB("database prefix test")
+	//databaseLog.SetPrefix("INFO")
+	//databaseLog.WriteToDB("database prefix test")
 
 	log := logs.NewCustomLogger(true, fileLog1, fileLog2, syslog, databaseLog)
 
