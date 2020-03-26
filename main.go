@@ -10,7 +10,7 @@ import (
 
 func main() {
 
-	fileLog1 := logs.NewFileLogger("fileLog1") // /tmp/filelog1
+	fileLog1 := logs.NewFileLogger("fileLog1")
 	defer fileLog1.Close()
 	//fileLog1.SetPrefix("  Info")
 	//fileLog1.Println("Test file log")
@@ -24,7 +24,9 @@ func main() {
 	//syslog.Println("sylog test")
 
 	stdlog := logs.NewStdLogger()
-	stdlog.Println("StdLog Test")
+	defer stdlog.Close()
+	//stdlog.SetPrefix("Test")
+	//stdlog.Println("StdLog Test")
 
 	databaseLog := logs.NewDataBaseLog(logs.DatabaseConfiguration())
 	//databaseLog.SetPrefix("INFO")

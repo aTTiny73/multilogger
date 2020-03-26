@@ -2,7 +2,6 @@ package logs
 
 import (
 	"fmt"
-	"log"
 	"os"
 )
 
@@ -14,18 +13,23 @@ func NewFileLogger(s string) *FileLogger {
 		fmt.Println("Can not open file")
 	}
 	flog.fd = file
-	flog.logger = log.New(file, "? ", log.LstdFlags)
 	return &flog
 }
 
 //Println function for FileLogger
 func (flog *FileLogger) Println(v ...interface{}) {
-	flog.logger.Println(v...)
+	date, time := getDateTime()
+	text := fmt.Sprintln(v...)
+	output := []byte(flog.prefix + " " + date + " " + time + " " + text)
+	flog.fd.Write(output)
 }
 
 //Printf function for FileLogger
 func (flog *FileLogger) Printf(format string, v ...interface{}) {
-	flog.logger.Printf(format, v...)
+	date, time := getDateTime()
+	text := fmt.Sprintf(format, v...)
+	output := []byte(flog.prefix + " " + date + " " + time + " " + text + "\n")
+	flog.fd.Write(output)
 }
 
 //Close for FileLogger
@@ -35,5 +39,5 @@ func (flog *FileLogger) Close() {
 
 //SetPrefix funcion
 func (flog *FileLogger) SetPrefix(pref string) {
-	flog.logger.SetPrefix(pref)
+	flog.prefix = pref
 }

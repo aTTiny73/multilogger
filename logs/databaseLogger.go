@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-//DatabaseConfiguration setting up database
+// DatabaseConfiguration setting up database
 func DatabaseConfiguration() *sql.DB {
 	conn, err := sql.Open("mysql", "TestUser:12345678@tcp/LOGGER")
 	if err != nil {
@@ -16,14 +16,14 @@ func DatabaseConfiguration() *sql.DB {
 	return conn
 }
 
-//NewDataBaseLog initilizes DataBaseLogger structure with DataBaseConfiguration
+// NewDataBaseLog initilizes DataBaseLogger structure with DataBaseConfiguration
 func NewDataBaseLog(DB *sql.DB) *DataBaseLogger {
 	var DBLog DataBaseLogger
 	DBLog.database = DB
 	return &DBLog
 }
 
-//WriteToDB writes to database
+// WriteToDB writes to database
 func (dblog *DataBaseLogger) WriteToDB(str string) {
 	stmt, err := dblog.database.Prepare("INSERT INTO Log(PREFIX, DATE, TIME, MESSAGE) VALUES(?, ?, ?, ?)")
 	if err != nil {
@@ -37,22 +37,22 @@ func (dblog *DataBaseLogger) WriteToDB(str string) {
 	}
 }
 
-//SetPrefix sets the log prefix
+// SetPrefix sets the log prefix
 func (dblog *DataBaseLogger) SetPrefix(prefix string) {
 	dblog.prefix = prefix
 }
 
-//Close the DataBase
+// Close the DataBase
 func (dblog *DataBaseLogger) Close() {
 	dblog.database.Close()
 }
 
-//Println for DataBase,converts the input to string and sends it to method WriteToDB
+// Println for DataBase,converts the input to string and sends it to method WriteToDB
 func (dblog *DataBaseLogger) Println(v ...interface{}) {
 	dblog.WriteToDB(fmt.Sprint(v...))
 }
 
-//Printf for DataBase,converts the input to string and sends it to method WriteToDB
+// Printf for DataBase,converts the input to string and sends it to method WriteToDB
 func (dblog *DataBaseLogger) Printf(format string, v ...interface{}) {
 	dblog.WriteToDB(fmt.Sprintf(format, v...))
 }
