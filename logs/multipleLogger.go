@@ -1,15 +1,15 @@
 package logs
 
 //NewCustomLogger makes a slice of loggers
-func NewCustomLogger(flag bool, logs ...LogFace) MultipleLog {
+func NewCustomLogger(flag bool, logs ...LogFace) *MultipleLog {
 	var multilog MultipleLog
 	multilog.sliceLog = logs
 	multilog.flag = flag
-	return multilog
+	return &multilog
 }
 
 //Info method
-func (multilog MultipleLog) Info(v ...interface{}) {
+func (multilog *MultipleLog) Info(v ...interface{}) {
 	for _, logg := range multilog.sliceLog {
 		logg.SetPrefix("Info")
 		logg.Println(v)
@@ -17,7 +17,7 @@ func (multilog MultipleLog) Info(v ...interface{}) {
 }
 
 //Infof method
-func (multilog MultipleLog) Infof(format string, v ...interface{}) {
+func (multilog *MultipleLog) Infof(format string, v ...interface{}) {
 	for _, logg := range multilog.sliceLog {
 		logg.SetPrefix("Infof")
 		logg.Printf(format, v)
@@ -25,7 +25,7 @@ func (multilog MultipleLog) Infof(format string, v ...interface{}) {
 }
 
 //Warn method
-func (multilog MultipleLog) Warn(v ...interface{}) {
+func (multilog *MultipleLog) Warn(v ...interface{}) {
 	for _, logg := range multilog.sliceLog {
 		logg.SetPrefix("Warn")
 		logg.Println(v)
@@ -33,7 +33,7 @@ func (multilog MultipleLog) Warn(v ...interface{}) {
 }
 
 //Warnf method
-func (multilog MultipleLog) Warnf(format string, v ...interface{}) {
+func (multilog *MultipleLog) Warnf(format string, v ...interface{}) {
 	for _, logg := range multilog.sliceLog {
 		logg.SetPrefix("Warnf")
 		logg.Printf(format, v)
@@ -41,7 +41,7 @@ func (multilog MultipleLog) Warnf(format string, v ...interface{}) {
 }
 
 //Error method
-func (multilog MultipleLog) Error(v ...interface{}) {
+func (multilog *MultipleLog) Error(v ...interface{}) {
 	for _, logg := range multilog.sliceLog {
 		logg.SetPrefix("Error")
 		logg.Println(v)
@@ -49,7 +49,7 @@ func (multilog MultipleLog) Error(v ...interface{}) {
 }
 
 //Errorf method
-func (multilog MultipleLog) Errorf(format string, v ...interface{}) {
+func (multilog *MultipleLog) Errorf(format string, v ...interface{}) {
 	for _, logg := range multilog.sliceLog {
 		logg.SetPrefix("Errorf")
 		logg.Printf(format, v)
@@ -57,7 +57,7 @@ func (multilog MultipleLog) Errorf(format string, v ...interface{}) {
 }
 
 //Debug method
-func (multilog MultipleLog) Debug(v ...interface{}) {
+func (multilog *MultipleLog) Debug(v ...interface{}) {
 	if multilog.flag {
 		for _, logg := range multilog.sliceLog {
 			logg.SetPrefix("Debug")
@@ -67,7 +67,7 @@ func (multilog MultipleLog) Debug(v ...interface{}) {
 }
 
 //Debugf method
-func (multilog MultipleLog) Debugf(format string, v ...interface{}) {
+func (multilog *MultipleLog) Debugf(format string, v ...interface{}) {
 	if multilog.flag {
 		for _, logg := range multilog.sliceLog {
 			logg.SetPrefix("Debugf")

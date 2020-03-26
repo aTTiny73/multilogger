@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log"
 	"time"
-	
 )
 
 //DatabaseConfiguration setting up database
@@ -25,7 +24,7 @@ func NewDataBaseLog(DB *sql.DB) *DataBaseLogger {
 }
 
 //WriteToDB writes to database
-func (dblog DataBaseLogger) WriteToDB(str string) {
+func (dblog *DataBaseLogger) WriteToDB(str string) {
 	stmt, err := dblog.database.Prepare("INSERT INTO Log(PREFIX, DATE, TIME, MESSAGE) VALUES(?, ?, ?, ?)")
 	if err != nil {
 		log.Print(err)

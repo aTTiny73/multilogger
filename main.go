@@ -24,7 +24,7 @@ func main() {
 	//syslog.Println("sylog test")
 
 	stdlog := logs.NewStdLogger()
-	//stdlog.Println("StdLog Test")
+	stdlog.Println("StdLog Test")
 
 	databaseLog := logs.NewDataBaseLog(logs.DatabaseConfiguration())
 	//databaseLog.SetPrefix("INFO")

@@ -19,21 +19,21 @@ func NewFileLogger(s string) *FileLogger {
 }
 
 //Println function for FileLogger
-func (flog FileLogger) Println(v ...interface{}) {
+func (flog *FileLogger) Println(v ...interface{}) {
 	flog.logger.Println(v...)
 }
 
 //Printf function for FileLogger
-func (flog FileLogger) Printf(format string, v ...interface{}) {
+func (flog *FileLogger) Printf(format string, v ...interface{}) {
 	flog.logger.Printf(format, v...)
 }
 
 //Close for FileLogger
-func (flog FileLogger) Close() {
+func (flog *FileLogger) Close() {
 	flog.fd.Close()
 }
 
 //SetPrefix funcion
-func (flog FileLogger) SetPrefix(pref string) {
+func (flog *FileLogger) SetPrefix(pref string) {
 	flog.logger.SetPrefix(pref)
 }

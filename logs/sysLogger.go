@@ -13,16 +13,16 @@ func NewSysLogger(p syslog.Priority, f int) (*log.Logger, error) {
 }
 
 //Println function for SysLogger
-func (slog SysLogger) Println(v ...interface{}) {
+func (slog *SysLogger) Println(v ...interface{}) {
 	slog.logger.Println(v...)
 }
 
 //Printf function for SysLogger
-func (slog SysLogger) Printf(format string, v ...interface{}) {
+func (slog *SysLogger) Printf(format string, v ...interface{}) {
 	slog.logger.Printf(format, v...)
 }
 
 //SetPrefix funcion for SysLoggeer
-func (slog SysLogger) SetPrefix(pref string) {
+func (slog *SysLogger) SetPrefix(pref string) {
 	slog.logger.SetPrefix(pref)
 }
