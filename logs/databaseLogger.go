@@ -4,7 +4,6 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
-	"time"
 )
 
 // DatabaseConfiguration setting up database
@@ -29,8 +28,7 @@ func (dblog *DataBaseLogger) WriteToDB(str string) {
 	if err != nil {
 		log.Print(err)
 	}
-	date := fmt.Sprint(time.Now().Format("01-02-2006"))
-	time := fmt.Sprint(time.Now().Format("15:04:05"))
+	date, time := getDateTime()
 	_, err = stmt.Exec(dblog.prefix, date, time, str)
 	if err != nil {
 		log.Print(err)
