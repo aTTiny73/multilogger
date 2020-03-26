@@ -6,7 +6,7 @@ import (
 	"log"
 )
 
-// DatabaseConfiguration setting up database
+// DatabaseConfiguration setting up database with custom TestUser
 func DatabaseConfiguration() *sql.DB {
 	conn, err := sql.Open("mysql", "TestUser:12345678@tcp/LOGGER")
 	if err != nil {
@@ -35,16 +35,6 @@ func (dblog *DataBaseLogger) WriteToDB(str string) {
 	}
 }
 
-// SetPrefix sets the log prefix
-func (dblog *DataBaseLogger) SetPrefix(prefix string) {
-	dblog.prefix = prefix
-}
-
-// Close the DataBase
-func (dblog *DataBaseLogger) Close() {
-	dblog.database.Close()
-}
-
 // Println for DataBase,converts the input to string and sends it to method WriteToDB
 func (dblog *DataBaseLogger) Println(v ...interface{}) {
 	dblog.WriteToDB(fmt.Sprint(v...))
@@ -53,4 +43,14 @@ func (dblog *DataBaseLogger) Println(v ...interface{}) {
 // Printf for DataBase,converts the input to string and sends it to method WriteToDB
 func (dblog *DataBaseLogger) Printf(format string, v ...interface{}) {
 	dblog.WriteToDB(fmt.Sprintf(format, v...))
+}
+
+// Close the DataBase
+func (dblog *DataBaseLogger) Close() {
+	dblog.database.Close()
+}
+
+// SetPrefix sets the log prefix
+func (dblog *DataBaseLogger) SetPrefix(prefix string) {
+	dblog.prefix = prefix
 }
