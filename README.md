@@ -17,7 +17,7 @@ CREATE TABLE Log
     PREFIX varchar(255) NOT NULL,
     DATE varchar(255) NOT NULL,
     TIME varchar(255) NOT NULL,
-    TEXT varchar(255) NOT NULL,
+    MESSAGE varchar(255) NOT NULL,
     PRIMARY KEY (id)
 );
 ```
